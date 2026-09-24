@@ -177,8 +177,23 @@ if query:
 
     with st.chat_message("assistant"):
         with st.spinner("Retrieving and generating answer..."):
+
+            # Measure retrieval
+            retrieval_start = time.time()
             retrieved = retrieve(query, pipeline)
+            retrieval_time = time.time() - retrieval_start
+
+            # Measure Gemini generation
+            generation_start = time.time()
             answer = generate(query, retrieved, pipeline)
+            generation_time = time.time() - generation_start
+
+        st.caption(
+            f"Retrieval: {retrieval_time:.2f}s | "
+            f"Generation: {generation_time:.2f}s"
+        )
+            
+            
         st.markdown(escape_dollar_signs(answer))
         with st.expander("View retrieved sources"):
             for chunk in retrieved:
