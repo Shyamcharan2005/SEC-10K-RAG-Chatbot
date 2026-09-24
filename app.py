@@ -192,8 +192,6 @@ if query:
             f"Retrieval: {retrieval_time:.2f}s | "
             f"Generation: {generation_time:.2f}s"
         )
-            
-            
         st.markdown(escape_dollar_signs(answer))
         with st.expander("View retrieved sources"):
             for chunk in retrieved:
