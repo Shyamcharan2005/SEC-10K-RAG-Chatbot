@@ -120,7 +120,7 @@ def retrieve(query, pipeline, n=5):
     reranked = sorted(zip(scores, fused), reverse=True)
     return [chunk for _, chunk in reranked[:n]]
 
-def generate(query, chunks, pipeline, max_retries=3):
+def generate(query, chunks, pipeline, max_retries=2):
     context = "\n\n".join(
         [f"[{pipeline['chunk_to_company'].get(chunk, 'UNKNOWN')}]: {chunk}" for chunk in chunks]
     )
