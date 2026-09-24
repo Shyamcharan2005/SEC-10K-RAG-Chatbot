@@ -1,0 +1,62 @@
+question,answer,faithfulness,answer_relevancy,context_precision,context_recall
+What specific risks did NVIDIA identify related to export restrictions or trade regulations?,"Based on the provided context, NVIDIA identified the following specific risks related to export restrictions and trade regulations:
+
+*   **Competitive Disadvantage:** Export controls have had, and are likely to continue to have, a disproportionate impact on NVIDIA, potentially disadvantaging them against competitors who sell chips outside the scope of such controls.
+*   **Customer ""Design-Out"" Behavior:** Controls have encouraged (and may continue to encourage) customers outside of China and other impacted regions to ""design-out"" certain U.S. semiconductors from their products to reduce compliance burdens, mitigate risk, and ensure they can serve worldwide markets.
+*   **Foreign Government Interference:** Export controls have encouraged overseas governments to request that customers purchase from NVIDIA's competitors (rather than NVIDIA or other U.S. firms), which harms its business, market position, and financial results.
+*   **Downstream Restrictions on Users:** Controls targeting GPUs and AI-associated semiconductors have subjected (and may subject) downstream users to restrictions on the use, resale, repair, or transfer of NVIDIA's products.
+*   **Impact on Cloud and Service Provision:** Controls could negatively impact the cost and/or ability of NVIDIA to provide services (such as NVIDIA AI cloud services), as well as the cost and/or ability of Cloud Service Providers (CSPs) and customers to provide services.
+*   **Shipment and Business Interferences:** Broader government actions—including trade protections, tariffs, import/export regulations (including deemed export restrictions), restrictions on U.S. persons, sanctions, quotas, and trade barriers—could affect NVIDIA's ability to ship products, provide services to customers and employees, and do business without an export license with certain entities.",,0.9991243163531485,0.99999999995,1.0
+What was Microsoft's revenue growth in its most recent fiscal year?,"Based on the provided context, Microsoft's (MSFT) revenue increased by **$50.1 billion or 18%** in fiscal year 2026 compared with fiscal year 2025.",1.0,,0.9999999999,1.0
+What is Apple's approach to returning capital to shareholders?,"Based on the provided context, Apple engages in share repurchase programs. Specifically, the context notes that Apple repurchased **402 million shares** of its common stock for **$89.3 billion**. 
+
+Additionally, the context specifies the following regarding Apple's share repurchase approach:
+* The company's share repurchase programs **do not obligate** it to acquire a minimum amount of shares.
+* Shares may be repurchased through **privately negotiated or open market transactions**.
+* Repurchases can include plans complying with **Rule 10b5-1** under the Exchange Act.",,,0.999999999975,0.0
+What was NVIDIA's revenue growth in its most recent fiscal year?,"Based on the provided SEC filing context, NVIDIA's total revenue for the last two fiscal years was:
+
+* **Fiscal Year Ended Jan 25, 2026:** $215,938 million ($215.94 billion)
+* **Fiscal Year Ended Jan 26, 2025:** $130,497 million ($130.50 billion)
+
+To calculate the revenue growth in its most recent fiscal year (ended January 25, 2026):
+
+1. **Absolute Growth:** 
+   $$\$215,938\text{ million} - \$130,497\text{ million} = \$85,441\text{ million}$$
+
+2. **Percentage Growth:** 
+   $$\frac{\$85,441\text{ million}}{\$130,497\text{ million}} \times 100 \approx 65.47\%$$
+
+NVIDIA's revenue grew by **$85,441 million** (or approximately **65.5%**) in its most recent fiscal year (fiscal year 2026 compared to fiscal year 2025).",,,0.3333333333,1.0
+What risks did Apple disclose related to supply chain or manufacturing?,"Based on the provided context, Apple Inc. disclosed the following risks related to its supply chain and manufacturing:
+
+* **Supply shortages and price increases:** The Company remains subject to significant risks of supply shortages and price increases that can materially and adversely affect its business, results of operations, financial condition, and stock price (Apple Inc. | 2025 Form 10-K | 8).
+* **Design and manufacturing defects:** The Company’s products and services may be affected from time to time by design and manufacturing defects that could materially adversely affect the Company’s business and result in harm to its reputation.",,,0.99999999995,1.0
+What legal proceedings or litigation did Tesla disclose?,"Based on the provided context, Tesla disclosed several legal proceedings and lawsuits, which include:
+
+1. **Delaware Court of Chancery Lawsuit (October 21, 2022):** A purported shareholder filed a lawsuit alleging that board members breached their fiduciary duties regarding oversight of the Company's 2018 SEC settlement (as amended). The plaintiff is seeking corporate governance/internal procedure reforms, unspecified damages, and attorneys’ fees. This case has been stayed.
+2. **Consolidated Derivative Actions (May, June 2024):** Three separate derivative actions were filed by purported stockholders in the Delaware Court of Chancery (on May 24, June 10, and June 13, 2024) against current and former directors regarding topics involving Elon Musk, X Corp. (formerly Twitter), and xAI. These suits assert claims including breach of fiduciary duty and breach of contract, seeking unspecified damages and other relief. Motions were filed to consolidate these matters, two of which were consolidated by the court, and Tesla/directors filed motions to dismiss with oral arguments on October 22, 2025.
+3. **Earlier Derivative Lawsuits (Oct 2018 / Feb 2019):** Two derivative lawsuits were filed in the U.S. District Court for the District of Delaware against Mr. Musk and Tesla board members. These cases were consolidated and ultimately **dismissed with prejudice** on April 25, 2025.
+4. **Driver Assistance Technology Class Action:** A lawsuit was filed alleging various claims about the Company’s driver assistance technology systems under state and federal law. It was consolidated with other proposed class actions (with a Consolidated Amended Complaint filed on October 28, 2022) seeking damages and relief for persons who purchased or leased from Tesla between January 1, 2016, and the present. Plaintiffs also filed a motion for a preliminary injunction on March 22, 2023.
+5. **Litigation and Investigations Relating to Alleged Discrimination and Harassment:** Mentioned as a category of legal proceedings disclosed by the company.",,,0.99999999998,0.0
+"How much did Google spend on R&D, and what was the primary driver?","Based on the provided SEC filing context for GOOGL (Alphabet Inc.), there is no specific information or data provided regarding Google's Research and Development (R&D) expenses or their primary drivers. 
+
+*(Note: The provided context contains R&D details for [TSLA], where Tesla's R&D increased by $1.87 billion, or 41%, primarily driven by costs related to AI and other programs, as well as a $500 million increase in stock-based compensation, but this does not apply to Google.)*",,,0.0,1.0
+What did Meta identify as risks related to its metaverse or Reality Labs investments?,"Based on the provided context, Meta identified the following risks related to its metaverse and Reality Labs investments:
+
+* **Inability to develop relationships and interoperability:** Meta may be unable to develop relationships with key participants in the metaverse or develop products that operate effectively with metaverse technologies, systems, networks, or standards. Additionally, third-party mobile platforms may not provide Meta's consumer hardware products with the same levels of interoperability that they provide to their own competing products.
+* **Limited revenue and negative financial impact:** Investments in Reality Labs have generated only limited revenue and have reduced the company's operating margin and profitability. The adverse financial impact is expected to continue for the foreseeable future. For example, investments in Reality Labs reduced Meta's 2025 overall operating profit by approximately $19.19 billion, and 2026 operating losses are expected to remain.
+* **Uncertain success:** The Reality Labs strategy and investments may not be successful in the foreseeable future, or at all, which could adversely affect Meta's business, reputation, or financial results. 
+* **Long-term research uncertainties:** Many Reality Labs investments are directed toward long-term, cutting-edge research and development for products that are not currently on the market and may only be fully realized in the next decade.",,,0.9999999999666667,
+What did Amazon disclose as risks related to competition in its business?,"Based on the provided context, Amazon disclosed the following risks and details related to competition:
+
+* **Investigations and Rules:** Amazon faces claims and investigations regarding whether its operations (including the operation of its stores, fulfillment network, Prime, and AWS cloud services) infringe upon competition-related or consumer protection rules or regulations. (Amazon noted it strongly disputes these claims and intends to defend itself vigorously).
+* **General Business Risks:** Competition is explicitly listed as a factor that can impact its business, alongside other factors such as customer demand, inflation, interest rates, labor market constraints, and new technologies. 
+* **Intense Competition:** Amazon explicitly highlights under its ""Business and Industry Risks"" that it ""Faces Intense Competition.""",,0.9313921327144633,,1.0
+What risks did Tesla disclose related to its autonomous driving or Full Self-Driving technology?,"Based on the provided context, Tesla disclosed the following risks and challenges related to its autonomous driving and Full Self-Driving (FSD) technology:
+
+* **Adoption Risks:** Tesla's future growth and success are dependent upon the adoption of its autonomous driving solutions. If the market for these solutions does not develop as expected, develops more slowly than expected, or if demand decreases, Tesla's business, prospects, financial condition, and operating results may be harmed.
+* **Legal and Regulatory Challenges:** Tesla faced a legal motion seeking an injunction to order the company to:
+  * Cease using the term ""Full Self-Driving Capability"" (FSD Capability).
+  * Cease the sale and activation of FSD Capability and deactivate it on Tesla vehicles.
+  * Provide certain notices to consumers regarding proposed court findings about the accuracy of the terms ""Autopilot"" and ""FSD Capability"" (though the court denied this request for a preliminary injunction on September 30, 2023).",,0.9521239610729875,0.249999999975,1.0

@@ -1,0 +1,8 @@
+streamlit
+sentence-transformers
+langchain-community
+langchain-text-splitters
+rank_bm25
+google-genai==2.22.0
+chromadb
+python-dotenv
