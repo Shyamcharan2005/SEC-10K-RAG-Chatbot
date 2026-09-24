@@ -139,7 +139,7 @@ def generate(query, chunks, pipeline, max_retries=3):
              time.sleep(2 ** attempt)
              continue
             else:
-                print(f"FULL ERROR: {e}")  # add this temporarily
+                st.error(f"Gemini error: {e}")
                 return f"⚠️ The AI service is temporarily unavailable. Please try again in a moment. (Error: {type(e).__name__})"
 
 
