@@ -2,6 +2,8 @@
 
 A Retrieval-Augmented Generation (RAG) chatbot for querying SEC 10-K filings from major technology companies. The system combines dense vector retrieval, BM25 lexical search, reciprocal rank fusion, and cross-encoder reranking before generating answers with Google's Gemini API.
 
+**Live demo:** [sec-10k-rag-chatbot.streamlit.app](https://sec-10k-rag-chatbot-m75ccdbrprkmpsxu9xayw8.streamlit.app/)
+
 ## Overview
 
 This project explores the application of RAG to financial filings, where relevant information can appear across narrative text, financial statements, tables, and company-specific terminology.
@@ -239,7 +241,7 @@ streamlit run app.py
 
 ## Deployment
 
-The application is deployed using **Streamlit Community Cloud**.
+The application is deployed using **Streamlit Community Cloud** and is live at https://sec-10k-rag-chatbot-m75ccdbrprkmpsxu9xayw8.streamlit.app/.
 
 The Gemini API key is provided through the deployment platform's secrets configuration rather than being stored in the repository.
 
