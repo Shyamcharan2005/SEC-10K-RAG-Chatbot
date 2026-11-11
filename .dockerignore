@@ -1,0 +1,10 @@
+.env
+.git
+.github
+__pycache__
+*.pyc
+tests
+sec_filings
+sec_filings_clean
+chroma_db
+ragas_results.csv

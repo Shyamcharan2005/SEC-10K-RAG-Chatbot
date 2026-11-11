@@ -1,30 +1,18 @@
 import os
-from dotenv import load_dotenv
-load_dotenv()
 
-os.environ["HF_HUB_OFFLINE"] = "1"
-os.environ["TRANSFORMERS_OFFLINE"] = "1"
-
-# Import the exact, already-tested pipeline pieces from your real app.py,
-# instead of duplicating them here and risking a second copy drifting out of sync.
-from app import load_pipeline, retrieve, generate
-
+import pandas as pd
 from datasets import Dataset
-from ragas import evaluate
-from ragas.metrics import faithfulness, answer_relevancy, context_precision, context_recall
-from ragas.llms import LangchainLLMWrapper
-from ragas.embeddings import LangchainEmbeddingsWrapper
-from ragas.run_config import RunConfig
-from langchain_groq import ChatGroq
-from google import genai
 from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
+from ragas import evaluate
+from ragas.embeddings import LangchainEmbeddingsWrapper
+from ragas.llms import LangchainLLMWrapper
+from ragas.metrics import answer_relevancy, context_precision, context_recall, faithfulness
+from ragas.run_config import RunConfig
 
-# ---------------------------------------------------------------------------
-# 1. Load the pipeline exactly as app.py does (reuses existing ./chroma_db,
-#    does NOT re-embed since the collection already has data).
-# ---------------------------------------------------------------------------
-pipeline = load_pipeline()
+import rag
+
+METRICS = ["faithfulness", "answer_relevancy", "context_precision", "context_recall"]
 
 # ---------------------------------------------------------------------------
 # 2. Final test set
@@ -75,83 +63,46 @@ test_set = [
 # ---------------------------------------------------------------------------
 # 3. Run the real pipeline on every question
 # ---------------------------------------------------------------------------
-questions, answers, contexts_list, ground_truths = [], [], [], []
+pipeline = rag.load_pipeline()
 
+rows = []
 for item in test_set:
-    q = item["question"]
-    print(f"Running: {q}")
-    retrieved = retrieve(q, pipeline)          # pipeline passed in, matching app.py's signature
-    answer = generate(q, retrieved, pipeline)  # pipeline passed in, matching app.py's signature
+    print(f"Running: {item['question']}")
+    result = pipeline.answer(item["question"])
+    rows.append({
+        "question": item["question"],
+        "answer": result.answer,
+        "contexts": [p.text for p in result.passages],
+        "ground_truth": item["ground_truth"],
+    })
 
-    questions.append(q)
-    answers.append(answer)
-    contexts_list.append(retrieved)
-    ground_truths.append(item["ground_truth"])
+dataset = Dataset.from_list(rows)
 
-eval_dataset = Dataset.from_dict({
-    "question": questions,
-    "answer": answers,
-    "contexts": contexts_list,
-    "ground_truth": ground_truths,
-})
-
-# ---------------------------------------------------------------------------
-# 4. Wire RAGAS to use Gemini + your existing local embedder
-# ---------------------------------------------------------------------------
-judge_llm = ChatGroq(
+judge = LangchainLLMWrapper(ChatGroq(
     model="openai/gpt-oss-20b",
-    api_key=os.environ.get("GROQ_API_KEY"),
+    api_key=os.environ.get("GROQ_API_KEY") or os.environ.get("Groq_api_key"),
     max_tokens=2048,
-)
-ragas_llm = LangchainLLMWrapper(judge_llm)
-
-local_embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-ragas_embeddings = LangchainEmbeddingsWrapper(local_embeddings)
-
-# Throttle concurrency + give each job more time to wait its turn in the
-# free-tier rate limit queue, instead of firing all 40 jobs at once.
-run_config = RunConfig(
-    timeout=180,
-    max_workers=4,
-)
+))
+embeddings = LangchainEmbeddingsWrapper(HuggingFaceEmbeddings(model_name=rag.EMBEDDING_MODEL))
 
 results = evaluate(
-    dataset=eval_dataset,
+    dataset=dataset,
     metrics=[faithfulness, answer_relevancy, context_precision, context_recall],
-    llm=ragas_llm,
-    embeddings=ragas_embeddings,
-    run_config=run_config,
+    llm=judge,
+    embeddings=embeddings,
+    run_config=RunConfig(timeout=180, max_workers=4),
 )
 
-print("\n=== RAGAS Evaluation Results (overall averages) ===")
-print(results)
+scores = results.to_pandas()
+report = pd.DataFrame({"question": [r["question"] for r in rows], "answer": [r["answer"] for r in rows]})
+for col in (c for c in METRICS if c in scores.columns):
+    report[col] = scores[col].values
 
-# ---------------------------------------------------------------------------
-# 5. Per-question breakdown
-#
-# results.to_pandas() does not reliably return a "question" column across
-# RAGAS versions (it may use "user_input" / "question" / etc. depending on
-# version). Rather than guess and crash with a KeyError, build the report
-# from our own known-good eval_dataset and merge in whatever score columns
-# RAGAS actually returned.
-# ---------------------------------------------------------------------------
-df = results.to_pandas()
-print("\nColumns returned by RAGAS:", df.columns.tolist())
+print("\n=== Per-question scores ===")
+print(report.drop(columns="answer").to_string())
 
-metric_cols = [c for c in ["faithfulness", "answer_relevancy", "context_precision", "context_recall"] if c in df.columns]
-
-report = pd_df = None
-try:
-    import pandas as pd
-    report = pd.DataFrame({"question": questions, "answer": answers})
-    for col in metric_cols:
-        report[col] = df[col].values
-except Exception as e:
-    print(f"Could not build merged report ({e}); falling back to raw RAGAS dataframe.")
-    report = df
-
-print("\n=== Per-question breakdown ===")
-print(report)
+print("\n=== Averages (successfully scored questions only) ===")
+for col in (c for c in METRICS if c in report.columns):
+    print(f"{col:<18} {report[col].mean():.4f}   (n = {report[col].notna().sum()}/{len(report)})")
 
 report.to_csv("ragas_results.csv", index=False)
-print("\nSaved detailed results to ragas_results.csv")

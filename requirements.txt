@@ -1,3 +1,6 @@
+fastapi
+uvicorn[standard]
+pydantic
 streamlit
 sentence-transformers
 langchain-community
